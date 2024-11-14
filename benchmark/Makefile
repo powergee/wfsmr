@@ -78,9 +78,9 @@ SRCDIRS :=./src
 # output directory for binary executables
 BINDIR :=./bin
 # C compiler
-CC:=/opt/llvm/bin/clang
+CC:=/usr/bin/clang
 # C++ compiler
-CXX:=/opt/llvm/bin/clang++
+CXX:=/usr/bin/clang++
 # linker
 LD:= $(CXX)
 
@@ -128,11 +128,11 @@ WARNING_FLAGS:=-ftrapv -Wreturn-type -W -Wall \
 -Wno-unused-variable -Wno-unused-parameter -Wno-invalid-offsetof -Wno-overloaded-virtual
 
 # Default build flags.  
-CFLAGS:=-pthread -g -gdwarf-2 -fpic $(WARNING_FLAGS)
-CXXFLAGS:= -pthread -std=gnu++11 -mcx16 -g -fpic $(WARNING_FLAGS) -std=c++1y
+CFLAGS:=-pthread -g -gdwarf-2 -fpic $(WARNING_FLAGS) -fsanitize=address
+CXXFLAGS:= -pthread -std=gnu++11 -mcx16 -g -fpic $(WARNING_FLAGS) -std=c++1y -fsanitize=address
 
 # linker flags
-LDFLAGS := $(WARNING_FLAGS)
+LDFLAGS := $(WARNING_FLAGS) -fsanitize=address
 
 
 # -------------------------
